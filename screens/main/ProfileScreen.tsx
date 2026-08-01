@@ -10,6 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { supabase } from '../../lib/supabase';
 import * as Haptics from 'expo-haptics';
 import { fetchUserProfile, updateUserProfile, defaultProfile } from '../../lib/profileService';
+import { useCurrency, CURRENCIES, COUNTRIES } from '../../context/CurrencyContext';
 import { useAccounts } from '../../context/AccountContext';
 import { useTransactions } from '../../context/TransactionContext';
 import { useBills } from '../../context/BillContext';
