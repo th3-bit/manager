@@ -10,8 +10,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { supabase } from '../../lib/supabase';
 import * as Haptics from 'expo-haptics';
 import { fetchUserProfile, updateUserProfile, defaultProfile } from '../../lib/profileService';
-import { useCurrency, CURRENCIES, COUNTRIES } from '../../context/CurrencyContext';
 import { useAccounts } from '../../context/AccountContext';
+import { useTransactions } from '../../context/TransactionContext';
+import { useBills } from '../../context/BillContext';
 
 const { width } = Dimensions.get('window');
 
@@ -219,6 +220,8 @@ export function ProfileScreen({ navigation }: any) {
   });
 
   const { accounts: rawAccounts, addAccount, transferBetweenAccounts, setDefaultAccount, deleteAccount, totalNetWorthUSD } = useAccounts();
+  const { transactions: userTransactions, monthlyIncome, monthlyExpenses } = useTransactions();
+  const { totalUpcomingAmount } = useBills();
 
   const accounts = rawAccounts.map(a => ({
     id: a.id,
