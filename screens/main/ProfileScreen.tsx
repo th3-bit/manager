@@ -1183,18 +1183,22 @@ export function ProfileScreen({ navigation }: any) {
             <View style={styles.forecastCard}>
               <View style={styles.forecastItem}>
                 <Text style={styles.forecastLabel}>Expected Income (30d)</Text>
-                <Text style={[styles.forecastVal, { color: '#73f218' }]}>+$5,400.00</Text>
+                <Text style={[styles.forecastVal, { color: '#73f218' }]}>
+                  +${monthlyIncome.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </Text>
               </View>
               <View style={styles.forecastDivider} />
               <View style={styles.forecastItem}>
                 <Text style={styles.forecastLabel}>Upcoming Bills (30d)</Text>
-                <Text style={[styles.forecastVal, { color: '#ef4444' }]}>-$2,150.00</Text>
+                <Text style={[styles.forecastVal, { color: '#ef4444' }]}>
+                  -${totalUpcomingAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </Text>
               </View>
               <View style={styles.forecastDivider} />
               <View style={styles.forecastItem}>
                 <Text style={styles.forecastLabel}>Projected Net Balance</Text>
                 <Text style={styles.forecastTotalVal}>
-                  ${(totalNetWorth + 3250).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  ${(totalNetWorth + monthlyIncome - totalUpcomingAmount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </Text>
               </View>
             </View>
@@ -1816,36 +1820,39 @@ export function ProfileScreen({ navigation }: any) {
             <View style={styles.accMetricsGrid}>
               <View style={styles.accMetricCard}>
                 <Text style={styles.accMetricLabel}>INFLOW (30D)</Text>
-                <Text style={[styles.accMetricVal, { color: '#73f218' }]}>+$4,200.00</Text>
+                <Text style={[styles.accMetricVal, { color: '#73f218' }]}>
+                  +${monthlyIncome.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </Text>
               </View>
               <View style={styles.accMetricCard}>
                 <Text style={styles.accMetricLabel}>OUTFLOW (30D)</Text>
-                <Text style={[styles.accMetricVal, { color: '#ef4444' }]}>-$1,450.00</Text>
+                <Text style={[styles.accMetricVal, { color: '#ef4444' }]}>
+                  -${monthlyExpenses.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </Text>
               </View>
             </View>
 
             {/* Recent Account Activity Statement */}
             <Text style={styles.modalLabel}>RECENT TRANSACTIONS</Text>
             <View style={styles.accTxList}>
-              {[
-                { title: 'Income & Salary Deposit', date: 'Jul 22, 2026', amount: '+$3,500.00', icon: 'cash', color: '#73f218' },
-                { title: 'Electricity & Utility Bill', date: 'Jul 20, 2026', amount: '-$145.00', icon: 'flash', color: '#ef4444' },
-                { title: 'Coffee & Dining Out', date: 'Jul 19, 2026', amount: '-$12.50', icon: 'cafe', color: '#ef4444' },
-                { title: 'Online Subscription', date: 'Jul 18, 2026', amount: '-$89.99', icon: 'card', color: '#ef4444' },
-              ].map((tx, idx) => (
-                <View key={idx} style={styles.accTxItem}>
-                  <View style={[styles.accTxIcon, { backgroundColor: tx.color + '22' }]}>
-                    <Ionicons name={tx.icon as any} size={14} color={tx.color} />
+              {userTransactions.slice(0, 4).length > 0 ? (
+                userTransactions.slice(0, 4).map((tx, idx) => (
+                  <View key={idx} style={styles.accTxItem}>
+                    <View style={[styles.accTxIcon, { backgroundColor: (tx.isIncome ? '#73f218' : '#ef4444') + '22' }]}>
+                      <Ionicons name={(tx.isIncome ? 'cash-outline' : 'card-outline') as any} size={14} color={tx.isIncome ? '#73f218' : '#ef4444'} />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.accTxTitle}>{tx.title}</Text>
+                      <Text style={styles.accTxDate}>{tx.date}</Text>
+                    </View>
+                    <Text style={[styles.accTxAmount, { color: tx.isIncome ? '#73f218' : '#fff' }]}>
+                      {tx.isIncome ? '+' : '-'}${tx.amount.toFixed(2)}
+                    </Text>
                   </View>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.accTxTitle}>{tx.title}</Text>
-                    <Text style={styles.accTxDate}>{tx.date}</Text>
-                  </View>
-                  <Text style={[styles.accTxAmount, { color: tx.amount.startsWith('+') ? '#73f218' : '#fff' }]}>
-                    {tx.amount}
-                  </Text>
-                </View>
-              ))}
+                ))
+              ) : (
+                <Text style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, paddingVertical: 10, textAlign: 'center' }}>No recent transactions recorded yet.</Text>
+              )}
             </View>
 
             {/* Danger Zone: Delete Account */}

@@ -30,7 +30,7 @@ const BillContext = createContext<BillContextType>({
   addBill: () => {},
   markAsPaid: () => {},
   deleteBill: () => {},
-  totalUpcomingAmount: 1053.98,
+  totalUpcomingAmount: 0,
 });
 
 import { fetchUserBills, saveBillToSupabase, deleteBillFromSupabase } from '../lib/financeService';

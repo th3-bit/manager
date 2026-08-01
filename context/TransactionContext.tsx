@@ -39,12 +39,12 @@ const TransactionContext = createContext<TransactionContextType>({
   transactions: DEFAULT_TRANSACTIONS,
   addTransaction: async () => {},
   deleteTransaction: () => {},
-  totalIncome: 3950,
-  totalExpenses: 1275.99,
-  netBalance: 2674.01,
-  monthlyIncome: 3950,
-  monthlyExpenses: 1275.99,
-  monthlyNet: 2674.01,
+  totalIncome: 0,
+  totalExpenses: 0,
+  netBalance: 0,
+  monthlyIncome: 0,
+  monthlyExpenses: 0,
+  monthlyNet: 0,
 });
 
 export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
