@@ -2711,9 +2711,32 @@ export function WalletScreen({ navigation }: any) {
            OCR SMART RECEIPT SCANNER MODAL
       ────────────────────────────────────────────────────────────── */}
       <Modal visible={ocrModalVisible} transparent animationType="fade" statusBarTranslucent>
-        <View style={{ flex: 1, backgroundColor: 'rgba(2, 6, 23, 0.88)', justifyContent: 'center', alignItems: 'center', padding: 16 }}>
+        <View style={{
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.88)',
+          padding: 16,
+          zIndex: 99999,
+        }}>
           <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={() => setOcrModalVisible(false)} />
-          <View style={{ backgroundColor: 'rgba(15, 23, 42, 0.98)', borderRadius: 28, padding: 22, borderWidth: 1.5, borderColor: 'rgba(168, 85, 247, 0.4)', width: '100%', maxWidth: 480 }}>
+          <View style={{
+            backgroundColor: '#0f172a',
+            borderRadius: 28,
+            padding: 22,
+            borderWidth: 1.5,
+            borderColor: 'rgba(168, 85, 247, 0.4)',
+            width: '100%',
+            maxWidth: 440,
+            alignSelf: 'center',
+            maxHeight: '88%',
+          }}>
             {/* Header */}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>

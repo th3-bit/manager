@@ -4736,18 +4736,18 @@ export function BudgetScreen({ navigation }: any) {
 
       <Modal transparent visible={showGoalCurrencyPicker} animationType="fade" onRequestClose={() => setShowGoalCurrencyPicker(false)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -5009,18 +5009,18 @@ export function BudgetScreen({ navigation }: any) {
       {/* ─── SETTINGS CURRENCY PICKER MODAL ─── */}
       <Modal transparent visible={showSettingsCurrencyPicker} animationType="fade" onRequestClose={() => setShowSettingsCurrencyPicker(false)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -5415,16 +5415,26 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.05)',
   },
   calendarBackdrop: {
+    position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+    height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(2, 6, 23, 0.88)',
+    paddingHorizontal: 16,
     zIndex: 99999,
     elevation: 99999,
   },
   calendarSheet: {
-    width: Math.min(width - 32, 340),
-    backgroundColor: 'rgba(15, 23, 42, 0.85)',
+    width: '100%',
+    maxWidth: 360,
+    alignSelf: 'center',
+    backgroundColor: '#0f172a',
     borderRadius: 24,
     padding: 20,
     borderWidth: 1.5,

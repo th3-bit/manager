@@ -402,39 +402,55 @@ export function BudgetCategoryDetailScreen({ navigation, route }: any) {
         transparent={true}
         visible={adjustModalVisible}
         onRequestClose={() => setAdjustModalVisible(false)}
+        statusBarTranslucent
       >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.65)' }}
-        >
-          <View style={styles.modalContent}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-              <Text style={styles.modalTitle}>Set Budget Limit</Text>
-              <TouchableOpacity onPress={() => setAdjustModalVisible(false)}>
-                <Ionicons name="close" size={22} color="rgba(255,255,255,0.6)" />
+        <View style={{
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          backgroundColor: 'rgba(0,0,0,0.65)',
+          zIndex: 99999,
+        }}>
+          <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={() => setAdjustModalVisible(false)} />
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            style={{ width: '100%', maxWidth: 500, alignSelf: 'center' }}
+          >
+            <View style={styles.modalContent}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+                <Text style={styles.modalTitle}>Set Budget Limit</Text>
+                <TouchableOpacity onPress={() => setAdjustModalVisible(false)}>
+                  <Ionicons name="close" size={22} color="rgba(255,255,255,0.6)" />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.inputLabel}>BUDGET LIMIT FOR {categoryData.label.toUpperCase()} ($)</Text>
+              <TextInput
+                value={newBudgetInput}
+                onChangeText={setNewBudgetInput}
+                keyboardType="decimal-pad"
+                autoFocus
+                placeholder="e.g. 500"
+                placeholderTextColor="#475569"
+                style={styles.modalInput}
+              />
+
+              <TouchableOpacity
+                onPress={handleSaveBudgetInput}
+                activeOpacity={0.85}
+                style={[styles.saveBtn, { backgroundColor: categoryData.color }]}
+              >
+                <Text style={{ color: '#0f172a', fontWeight: '900', fontSize: 14 }}>Apply Limit</Text>
               </TouchableOpacity>
             </View>
-
-            <Text style={styles.inputLabel}>BUDGET LIMIT FOR {categoryData.label.toUpperCase()} ($)</Text>
-            <TextInput
-              value={newBudgetInput}
-              onChangeText={setNewBudgetInput}
-              keyboardType="decimal-pad"
-              autoFocus
-              placeholder="e.g. 500"
-              placeholderTextColor="#475569"
-              style={styles.modalInput}
-            />
-
-            <TouchableOpacity
-              onPress={handleSaveBudgetInput}
-              activeOpacity={0.85}
-              style={[styles.saveBtn, { backgroundColor: categoryData.color }]}
-            >
-              <Text style={{ color: '#0f172a', fontWeight: '900', fontSize: 14 }}>Apply Limit</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
+        </View>
       </Modal>
 
       {/* ─── MODAL: ADD TRANSACTION ─── */}
@@ -443,47 +459,63 @@ export function BudgetCategoryDetailScreen({ navigation, route }: any) {
         transparent={true}
         visible={txModalVisible}
         onRequestClose={() => setTxModalVisible(false)}
+        statusBarTranslucent
       >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.65)' }}
-        >
-          <View style={styles.modalContent}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-              <Text style={styles.modalTitle}>Add {categoryData.label} Transaction</Text>
-              <TouchableOpacity onPress={() => setTxModalVisible(false)}>
-                <Ionicons name="close" size={22} color="rgba(255,255,255,0.6)" />
+        <View style={{
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          backgroundColor: 'rgba(0,0,0,0.65)',
+          zIndex: 99999,
+        }}>
+          <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={() => setTxModalVisible(false)} />
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            style={{ width: '100%', maxWidth: 500, alignSelf: 'center' }}
+          >
+            <View style={styles.modalContent}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+                <Text style={styles.modalTitle}>Add {categoryData.label} Transaction</Text>
+                <TouchableOpacity onPress={() => setTxModalVisible(false)}>
+                  <Ionicons name="close" size={22} color="rgba(255,255,255,0.6)" />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.inputLabel}>TRANSACTION DESCRIPTION</Text>
+              <TextInput
+                value={txTitle}
+                onChangeText={setTxTitle}
+                placeholder="e.g. Starbucks, Grocery Store"
+                placeholderTextColor="#475569"
+                style={styles.modalInput}
+              />
+
+              <Text style={styles.inputLabel}>AMOUNT ($)</Text>
+              <TextInput
+                value={txAmount}
+                onChangeText={setTxAmount}
+                keyboardType="decimal-pad"
+                placeholder="0.00"
+                placeholderTextColor="#475569"
+                style={styles.modalInput}
+              />
+
+              <TouchableOpacity
+                onPress={handleAddTransaction}
+                activeOpacity={0.85}
+                style={[styles.saveBtn, { backgroundColor: categoryData.color }]}
+              >
+                <Text style={{ color: '#0f172a', fontWeight: '900', fontSize: 14 }}>Add Payment</Text>
               </TouchableOpacity>
             </View>
-
-            <Text style={styles.inputLabel}>TRANSACTION DESCRIPTION</Text>
-            <TextInput
-              value={txTitle}
-              onChangeText={setTxTitle}
-              placeholder="e.g. Starbucks, Grocery Store"
-              placeholderTextColor="#475569"
-              style={styles.modalInput}
-            />
-
-            <Text style={styles.inputLabel}>AMOUNT ($)</Text>
-            <TextInput
-              value={txAmount}
-              onChangeText={setTxAmount}
-              keyboardType="decimal-pad"
-              placeholder="0.00"
-              placeholderTextColor="#475569"
-              style={styles.modalInput}
-            />
-
-            <TouchableOpacity
-              onPress={handleAddTransaction}
-              activeOpacity={0.85}
-              style={[styles.saveBtn, { backgroundColor: categoryData.color }]}
-            >
-              <Text style={{ color: '#0f172a', fontWeight: '900', fontSize: 14 }}>Add Payment</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
+        </View>
       </Modal>
     </View>
   );
@@ -573,6 +605,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   modalContent: {
+    width: '100%',
+    maxWidth: 500,
+    alignSelf: 'center',
     backgroundColor: '#0f172a',
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,

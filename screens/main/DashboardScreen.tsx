@@ -345,7 +345,7 @@ const AddTransactionModal = ({ visible, initialType = 'expense', onClose, onSave
         >
           <View style={{
             width: '100%',
-            maxWidth: 500,
+            maxWidth: 480,
             alignSelf: 'center',
             backgroundColor: '#0f172a',
             borderTopLeftRadius: 32,
@@ -353,7 +353,7 @@ const AddTransactionModal = ({ visible, initialType = 'expense', onClose, onSave
             padding: 24,
             borderWidth: 1.5,
             borderColor: 'rgba(255, 255, 255, 0.15)',
-            maxHeight: SCREEN_HEIGHT * 0.88,
+            maxHeight: Platform.OS === 'web' ? ('88vh' as any) : '88%',
           }}>
             {/* Header */}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
@@ -750,18 +750,19 @@ const SearchModal = ({ visible, onClose, insets }: any) => {
   return (
     <Modal transparent visible={visible} animationType="slide" onShow={() => inputRef.current?.focus()} onRequestClose={handleClose} statusBarTranslucent>
       <View style={{
-        position: 'absolute',
+        position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        width: '100%',
-        height: '100%',
+        width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+        height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
         backgroundColor: '#0f172a',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        zIndex: 9999,
+        zIndex: 99999,
       }}>
-        <View style={{ width: '100%', maxWidth: 600, flex: 1, alignSelf: 'center' }}>
+        <View style={{ width: '100%', maxWidth: 600, height: '100%', flex: 1, alignSelf: 'center' }}>
 
         {/* ── Top bar ── */}
         <View style={{
