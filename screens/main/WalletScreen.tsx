@@ -1401,19 +1401,19 @@ export function WalletScreen({ navigation }: any) {
         statusBarTranslucent
       >
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
           paddingVertical: 20,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <LinearGradient
             colors={['#0f172a', '#1e293b']}
@@ -1704,18 +1704,18 @@ export function WalletScreen({ navigation }: any) {
       ────────────────────────────────────────────────────────────────── */}
       <Modal transparent visible={showIncSourcePicker} animationType="fade" onRequestClose={() => setShowIncSourcePicker(false)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -1785,18 +1785,18 @@ export function WalletScreen({ navigation }: any) {
       ────────────────────────────────────────────────────────────────── */}
       <Modal transparent visible={showIncCurrencyPicker} animationType="fade" onRequestClose={() => setShowIncCurrencyPicker(false)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -1870,20 +1870,23 @@ export function WalletScreen({ navigation }: any) {
       {/* ─────────────────────────────────────────────────────────────────
            EXPENSE MERCHANT PICKER MODAL
       ────────────────────────────────────────────────────────────────── */}
+      {/* ─────────────────────────────────────────────────────────────────
+           EXPENSE MERCHANT PICKER MODAL
+      ────────────────────────────────────────────────────────────────── */}
       <Modal transparent visible={showExpMerchantPicker} animationType="fade" onRequestClose={() => setShowExpMerchantPicker(false)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -1953,18 +1956,18 @@ export function WalletScreen({ navigation }: any) {
       ────────────────────────────────────────────────────────────────── */}
       <Modal transparent visible={showExpCategoryPicker} animationType="fade" onRequestClose={() => setShowExpCategoryPicker(false)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -2043,19 +2046,19 @@ export function WalletScreen({ navigation }: any) {
         statusBarTranslucent
       >
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
           paddingVertical: 20,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <LinearGradient
             colors={['#0f172a', '#1e293b']}
@@ -2207,19 +2210,19 @@ export function WalletScreen({ navigation }: any) {
         statusBarTranslucent
       >
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
           paddingVertical: 20,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <LinearGradient
             colors={['#0f172a', '#1e293b']}
@@ -2332,19 +2335,19 @@ export function WalletScreen({ navigation }: any) {
       ────────────────────────────────────────────────────────────────── */}
       <Modal transparent visible={showNotifications} animationType="fade" onRequestClose={toggleNotifications} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
           paddingVertical: 20,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -2493,19 +2496,19 @@ export function WalletScreen({ navigation }: any) {
       ────────────────────────────────────────────────────────────────── */}
       <Modal transparent visible={!!selectedNotification} animationType="fade" onRequestClose={() => setSelectedNotification(null)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
           paddingVertical: 20,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -2798,17 +2801,17 @@ export function WalletScreen({ navigation }: any) {
       {/* ─── BILL DETAIL MODAL ─── */}
       <Modal visible={!!selectedBillDetail} animationType="slide" transparent onRequestClose={() => setSelectedBillDetail(null)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'flex-end',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <View style={{
             width: '100%',
@@ -2866,19 +2869,18 @@ export function WalletScreen({ navigation }: any) {
       {/* ─── CUSTOM BILL PAYMENT CONFIRMATION MODAL (PREMIUM UI/UX) ─── */}
       <Modal visible={!!pendingBillPayment} animationType="fade" transparent onRequestClose={() => setPendingBillPayment(null)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
-          alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
           paddingVertical: 20,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <View style={{
             width: '100%',

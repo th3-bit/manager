@@ -2919,18 +2919,18 @@ const styles = StyleSheet.create({
 
   // Modal & BottomSheet
   modalOverlay: {
-    position: 'absolute',
+    position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    width: '100%',
-    height: '100%',
+    width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+    height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
     flex: 1,
     backgroundColor: 'rgba(2, 6, 23, 0.85)',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    zIndex: 9999,
+    zIndex: 99999,
   },
   bottomSheet: {
     width: '100%',
@@ -3111,19 +3111,19 @@ const styles = StyleSheet.create({
 
   // Center Modal
   centerModalOverlay: {
-    position: 'absolute',
+    position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    width: '100%',
-    height: '100%',
+    width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+    height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
     flex: 1,
     backgroundColor: 'rgba(2, 6, 23, 0.85)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    zIndex: 9999,
+    zIndex: 99999,
   },
   centerModalCard: {
     backgroundColor: '#0f172a',
@@ -3301,19 +3301,19 @@ const styles = StyleSheet.create({
   testBiometricsText: { color: '#73f218', fontSize: 12, fontWeight: '800' },
 
   biometricLockContainer: {
-    position: 'absolute',
+    position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    width: '100%',
-    height: '100%',
+    width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+    height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
     flex: 1,
     backgroundColor: 'rgba(2, 6, 23, 0.95)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    zIndex: 9999,
+    zIndex: 99999,
   },
   biometricLockCard: {
     backgroundColor: '#0f172a',

@@ -241,13 +241,13 @@ export function AllTransactionsScreen({ navigation }: any) {
       {/* ── Transaction Detail Modal ── */}
       <Modal transparent visible={!!selected} animationType="fade" onRequestClose={() => setSelected(null)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           flex: 1,
           backgroundColor: 'rgba(15,23,42,0.85)',
           justifyContent: 'center',

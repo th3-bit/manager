@@ -714,19 +714,19 @@ export function ActivityScreen({ navigation }: any) {
       {/* ─── QUICK INSIGHT DETAIL MODAL (Centered & Glassmorphic) ─── */}
       <Modal visible={!!selectedInsight} animationType="fade" transparent onRequestClose={() => setSelectedInsight(null)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
           paddingVertical: 20,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           {selectedInsight && (
             <LinearGradient
@@ -937,19 +937,19 @@ export function ActivityScreen({ navigation }: any) {
       {/* ─── SEARCH & FILTER MODAL (Centered & Glassmorphic) ─── */}
       <Modal visible={filterModalVisible} animationType="fade" transparent onRequestClose={() => setFilterModalVisible(false)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
           paddingVertical: 20,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <LinearGradient
             colors={['#0f172a', '#1e293b']}
@@ -1060,7 +1060,21 @@ export function ActivityScreen({ navigation }: any) {
 
       {/* ─── ACTIVITY DETAIL MODAL (Centered & Glassmorphic) ─── */}
       <Modal visible={!!selectedActivity} animationType="fade" transparent onRequestClose={() => { setSelectedActivity(null); setIsDeletingRecord(false); }} statusBarTranslucent>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(2, 6, 23, 0.82)', paddingHorizontal: 16, paddingVertical: 20 }}>
+        <View style={{
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.82)',
+          paddingHorizontal: 16,
+          paddingVertical: 20,
+          zIndex: 99999,
+        }}>
           {selectedActivity && (
             <LinearGradient
               colors={['#0f172a', '#1e293b']}
@@ -1176,17 +1190,17 @@ export function ActivityScreen({ navigation }: any) {
       {/* ─── CHART BAR BREAKDOWN MODAL ─── */}
       <Modal visible={!!selectedBarDetails} animationType="slide" transparent onRequestClose={() => setSelectedBarDetails(null)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'flex-end',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           {selectedBarDetails && (
             <View style={{

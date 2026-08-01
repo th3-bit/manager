@@ -4568,21 +4568,20 @@ export function BudgetScreen({ navigation }: any) {
 
 
       {/* ─── SELECT CURRENCY MODALS ─── */}
-      {/* ─── SELECT CURRENCY MODALS ─── */}
       <Modal transparent visible={showIncCurrencyPicker} animationType="fade" onRequestClose={() => setShowIncCurrencyPicker(false)} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           paddingHorizontal: 16,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -5437,18 +5436,18 @@ const styles = StyleSheet.create({
     elevation: 15,
   },
   modalBackdrop: {
-    position: 'absolute',
+    position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    width: '100%',
-    height: '100%',
+    width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+    height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'rgba(2, 6, 23, 0.85)',
-    zIndex: 9999,
+    zIndex: 99999,
   },
   modalSheet: {
     width: '100%',

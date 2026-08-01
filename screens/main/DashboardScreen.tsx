@@ -2042,18 +2042,17 @@ export function DashboardScreen({ navigation }: any) {
       {/* ── NOTIFICATIONS MODAL ── */}
       <Modal transparent visible={showNotifications} animationType="fade" onRequestClose={toggleNotifications} statusBarTranslucent>
         <View style={{
-          position: 'absolute',
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
-          flex: 1,
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
           backgroundColor: 'rgba(2, 6, 23, 0.85)',
           alignItems: 'center',
           paddingHorizontal: 16,
-          zIndex: 9999,
+          zIndex: 99999,
         }}>
           <TouchableOpacity 
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} 
