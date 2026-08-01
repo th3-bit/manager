@@ -4568,14 +4568,31 @@ export function BudgetScreen({ navigation }: any) {
 
 
       {/* ─── SELECT CURRENCY MODALS ─── */}
-      <Modal transparent visible={showIncCurrencyPicker} animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.75)', justifyContent: 'center', paddingHorizontal: 24 }}>
+      {/* ─── SELECT CURRENCY MODALS ─── */}
+      <Modal transparent visible={showIncCurrencyPicker} animationType="fade" onRequestClose={() => setShowIncCurrencyPicker(false)} statusBarTranslucent>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          paddingHorizontal: 16,
+          zIndex: 9999,
+        }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
             activeOpacity={1}
             onPress={() => setShowIncCurrencyPicker(false)}
           />
           <View style={{
+            width: '100%',
+            maxWidth: 380,
+            alignSelf: 'center',
             backgroundColor: '#1e293b',
             borderRadius: 24,
             padding: 20,
@@ -4635,14 +4652,30 @@ export function BudgetScreen({ navigation }: any) {
         </View>
       </Modal>
 
-      <Modal transparent visible={showTxCurrencyPicker} animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.75)', justifyContent: 'center', paddingHorizontal: 24 }}>
+      <Modal transparent visible={showTxCurrencyPicker} animationType="fade" onRequestClose={() => setShowTxCurrencyPicker(false)} statusBarTranslucent>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          paddingHorizontal: 16,
+          zIndex: 9999,
+        }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
             activeOpacity={1}
             onPress={() => setShowTxCurrencyPicker(false)}
           />
           <View style={{
+            width: '100%',
+            maxWidth: 380,
+            alignSelf: 'center',
             backgroundColor: '#1e293b',
             borderRadius: 24,
             padding: 20,
@@ -4702,14 +4735,30 @@ export function BudgetScreen({ navigation }: any) {
         </View>
       </Modal>
 
-      <Modal transparent visible={showGoalCurrencyPicker} animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.75)', justifyContent: 'center', paddingHorizontal: 24 }}>
+      <Modal transparent visible={showGoalCurrencyPicker} animationType="fade" onRequestClose={() => setShowGoalCurrencyPicker(false)} statusBarTranslucent>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          paddingHorizontal: 16,
+          zIndex: 9999,
+        }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
             activeOpacity={1}
             onPress={() => setShowGoalCurrencyPicker(false)}
           />
           <View style={{
+            width: '100%',
+            maxWidth: 380,
+            alignSelf: 'center',
             backgroundColor: '#1e293b',
             borderRadius: 24,
             padding: 20,
@@ -4959,14 +5008,30 @@ export function BudgetScreen({ navigation }: any) {
       </Modal>
 
       {/* ─── SETTINGS CURRENCY PICKER MODAL ─── */}
-      <Modal transparent visible={showSettingsCurrencyPicker} animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.85)', justifyContent: 'center', paddingHorizontal: 24, zIndex: 99999, elevation: 99999 }}>
+      <Modal transparent visible={showSettingsCurrencyPicker} animationType="fade" onRequestClose={() => setShowSettingsCurrencyPicker(false)} statusBarTranslucent>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          paddingHorizontal: 16,
+          zIndex: 9999,
+        }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
             activeOpacity={1}
             onPress={() => setShowSettingsCurrencyPicker(false)}
           />
           <View style={{
+            width: '100%',
+            maxWidth: 380,
+            alignSelf: 'center',
             backgroundColor: '#1e293b',
             borderRadius: 24,
             padding: 20,
