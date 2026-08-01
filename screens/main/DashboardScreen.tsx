@@ -733,8 +733,20 @@ const SearchModal = ({ visible, onClose, insets }: any) => {
   };
 
   return (
-    <Modal transparent visible={visible} animationType="slide" onShow={() => inputRef.current?.focus()}>
-      <View style={{ flex: 1, backgroundColor: '#0f172a' }}>
+    <Modal transparent visible={visible} animationType="slide" onShow={() => inputRef.current?.focus()} onRequestClose={handleClose} statusBarTranslucent>
+      <View style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#0f172a',
+        alignItems: 'center',
+        zIndex: 9999,
+      }}>
+        <View style={{ width: '100%', maxWidth: 600, flex: 1, alignSelf: 'center' }}>
 
         {/* ── Top bar ── */}
         <View style={{
@@ -932,6 +944,7 @@ const SearchModal = ({ visible, onClose, insets }: any) => {
             </View>
           )}
         </ScrollView>
+      </View>
       </View>
     </Modal>
   );
@@ -2012,25 +2025,41 @@ export function DashboardScreen({ navigation }: any) {
       />
 
       {/* ── NOTIFICATIONS MODAL ── */}
-      <Modal transparent visible={showNotifications} animationType="none">
-        <View style={{ flex: 1 }}>
+      <Modal transparent visible={showNotifications} animationType="fade" onRequestClose={toggleNotifications} statusBarTranslucent>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          flex: 1,
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          alignItems: 'center',
+          paddingHorizontal: 16,
+          zIndex: 9999,
+        }}>
           <TouchableOpacity 
-            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)' }} 
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} 
             activeOpacity={1} 
             onPress={toggleNotifications} 
           />
           <Animated.View
             style={{ 
-              marginTop: Platform.OS === 'web' ? 60 : 80, 
-              marginHorizontal: 20, 
-              backgroundColor: 'rgba(15, 23, 42, 0.75)', 
+              width: '100%',
+              maxWidth: 420,
+              alignSelf: 'center',
+              marginTop: Platform.OS === 'web' ? 60 : insets.top + 40, 
+              backgroundColor: '#1e293b', 
               borderRadius: 24, 
               padding: 20, 
               borderWidth: 1.5,
-              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderColor: 'rgba(255, 255, 255, 0.15)',
+              maxHeight: SCREEN_HEIGHT * 0.8,
               shadowColor: '#000', 
               shadowOffset: { width: 0, height: 10 }, 
-              shadowOpacity: 0.3, 
+              shadowOpacity: 0.4, 
               shadowRadius: 20, 
               elevation: 10,
               opacity: fadeAnim,
