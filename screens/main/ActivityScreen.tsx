@@ -712,17 +712,18 @@ export function ActivityScreen({ navigation }: any) {
       </ScrollView>
 
       {/* ─── QUICK INSIGHT DETAIL MODAL (Centered & Glassmorphic) ─── */}
-      <Modal visible={!!selectedInsight} animationType="fade" transparent>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(2, 6, 23, 0.82)', paddingHorizontal: 16 }}>
+      <Modal visible={!!selectedInsight} animationType="fade" transparent onRequestClose={() => setSelectedInsight(null)} statusBarTranslucent>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(2, 6, 23, 0.82)', paddingHorizontal: 16, paddingVertical: 20 }}>
           {selectedInsight && (
             <LinearGradient
-              colors={['rgba(15, 23, 42, 0.95)', 'rgba(30, 41, 59, 0.9)']}
+              colors={['#0f172a', '#1e293b']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{
                 width: Math.min(SW - 32, 400),
+                maxHeight: '85%',
                 borderRadius: 28,
-                padding: 24,
+                padding: 22,
                 borderWidth: 1.5,
                 borderColor: 'rgba(255, 255, 255, 0.15)',
                 shadowColor: '#000',
@@ -732,6 +733,7 @@ export function ActivityScreen({ navigation }: any) {
                 elevation: 20,
               }}
             >
+              <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
               {/* Header */}
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -910,6 +912,7 @@ export function ActivityScreen({ navigation }: any) {
               >
                 <Text style={{ color: '#0f172a', fontSize: 14, fontWeight: '900' }}>View Full Analytics Report</Text>
               </TouchableOpacity>
+              </ScrollView>
             </LinearGradient>
           )}
         </View>
@@ -1023,17 +1026,18 @@ export function ActivityScreen({ navigation }: any) {
       </Modal>
 
       {/* ─── ACTIVITY DETAIL MODAL (Centered & Glassmorphic) ─── */}
-      <Modal visible={!!selectedActivity} animationType="fade" transparent>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(2, 6, 23, 0.82)', paddingHorizontal: 16 }}>
+      <Modal visible={!!selectedActivity} animationType="fade" transparent onRequestClose={() => { setSelectedActivity(null); setIsDeletingRecord(false); }} statusBarTranslucent>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(2, 6, 23, 0.82)', paddingHorizontal: 16, paddingVertical: 20 }}>
           {selectedActivity && (
             <LinearGradient
-              colors={['rgba(15, 23, 42, 0.95)', 'rgba(30, 41, 59, 0.9)']}
+              colors={['#0f172a', '#1e293b']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{
                 width: Math.min(SW - 32, 390),
+                maxHeight: '85%',
                 borderRadius: 28,
-                padding: 24,
+                padding: 22,
                 borderWidth: 1.5,
                 borderColor: 'rgba(255, 255, 255, 0.15)',
                 shadowColor: '#000',
@@ -1043,6 +1047,7 @@ export function ActivityScreen({ navigation }: any) {
                 elevation: 20,
               }}
             >
+              <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                 <Text style={{ color: '#fff', fontSize: 18, fontWeight: '900', letterSpacing: -0.3 }}>Activity Detail</Text>
                 <TouchableOpacity onPress={() => { setSelectedActivity(null); setIsDeletingRecord(false); }} style={{ backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 16, padding: 6, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}>
@@ -1129,6 +1134,7 @@ export function ActivityScreen({ navigation }: any) {
                 </View>
               )}
 
+              </ScrollView>
             </LinearGradient>
           )}
         </View>

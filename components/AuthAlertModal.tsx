@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, Modal, TouchableOpacity, ScrollView, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 interface AuthAlertModalProps {
@@ -11,6 +11,9 @@ interface AuthAlertModalProps {
   actionText?: string;
   onAction?: () => void;
 }
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+const isSmallPhone = SCREEN_WIDTH < 375 || SCREEN_HEIGHT < 667;
 
 export function AuthAlertModal({
   visible,
@@ -65,39 +68,49 @@ export function AuthAlertModal({
       animationType="fade"
       visible={visible}
       onRequestClose={onClose}
+      statusBarTranslucent
     >
-      <View className="flex-1 bg-black/60 justify-center items-center px-6">
-        <View className="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl items-center border border-gray-100">
-          {/* Animated Icon Circle */}
-          <View className={`w-16 h-16 ${iconBgColor} rounded-full items-center justify-center mb-4`}>
-            <Ionicons name={iconName} size={36} color={iconColor} />
-          </View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        className="flex-1 bg-black/60 justify-center items-center px-4 py-6"
+      >
+        <View className="w-full max-w-sm bg-white rounded-3xl p-5 md:p-6 shadow-2xl items-center border border-gray-100 max-h-[85vh]">
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ alignItems: 'center', paddingVertical: 4 }}
+            className="w-full flex-grow-0"
+          >
+            {/* Animated Icon Circle */}
+            <View className={`${isSmallPhone ? 'w-12 h-12 mb-3' : 'w-16 h-16 mb-4'} ${iconBgColor} rounded-full items-center justify-center`}>
+              <Ionicons name={iconName} size={isSmallPhone ? 28 : 36} color={iconColor} />
+            </View>
 
-          {/* Modal Header */}
-          <Text className="text-xl font-bold text-gray-900 mb-2 text-center">
-            {title}
-          </Text>
+            {/* Modal Header */}
+            <Text className={`${isSmallPhone ? 'text-lg mb-1.5' : 'text-xl mb-2'} font-bold text-gray-900 text-center`}>
+              {title}
+            </Text>
 
-          {/* Modal Description */}
-          <Text className="text-sm text-gray-600 text-center leading-relaxed mb-6">
-            {message}
-          </Text>
+            {/* Modal Description */}
+            <Text className={`${isSmallPhone ? 'text-xs mb-4' : 'text-sm mb-6'} text-gray-600 text-center leading-relaxed px-1`}>
+              {message}
+            </Text>
 
-          {/* Actions */}
-          <View className="w-full flex-row gap-3">
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => {
-                if (onAction) onAction();
-                onClose();
-              }}
-              className={`flex-1 ${buttonBgColor} py-3.5 rounded-2xl items-center shadow-sm`}
-            >
-              <Text className="text-white font-bold text-base">{actionText}</Text>
-            </TouchableOpacity>
-          </View>
+            {/* Actions */}
+            <View className="w-full flex-row gap-3">
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => {
+                  if (onAction) onAction();
+                  onClose();
+                }}
+                className={`flex-1 ${buttonBgColor} ${isSmallPhone ? 'py-3' : 'py-3.5'} rounded-2xl items-center shadow-sm`}
+              >
+                <Text className="text-white font-bold text-base">{actionText}</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }

@@ -2141,109 +2141,112 @@ export function DashboardScreen({ navigation }: any) {
       <SearchModal visible={showSearch} onClose={() => setShowSearch(false)} insets={insets} />
 
       {/* ── TRANSACTION DETAIL MODAL ── */}
-      <Modal transparent visible={!!selectedTransaction} animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.75)', justifyContent: 'center', paddingHorizontal: 20 }}>
+      <Modal transparent visible={!!selectedTransaction} animationType="fade" onRequestClose={() => setSelectedTransaction(null)} statusBarTranslucent>
+        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.85)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 20 }}>
           <TouchableOpacity 
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} 
             activeOpacity={1} 
             onPress={() => setSelectedTransaction(null)} 
           />
           <Animated.View style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backgroundColor: '#1e293b',
             borderRadius: 24,
-            padding: isSmallScreen ? 20 : 24,
+            width: '100%',
+            maxWidth: 400,
+            padding: isSmallScreen ? 18 : 22,
             borderWidth: 1.5,
             borderColor: 'rgba(255, 255, 255, 0.2)',
-            ...({ backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' } as any),
+            maxHeight: SCREEN_HEIGHT * 0.85,
             shadowColor: '#000',
             shadowOffset: { width: 0, height: 10 },
-            shadowOpacity: 0.3,
+            shadowOpacity: 0.4,
             shadowRadius: 20,
             elevation: 10,
-            alignItems: 'center',
           }}>
-            {/* Header / Close */}
-            <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end', marginBottom: -10, zIndex: 10 }}>
-              <TouchableOpacity onPress={() => setSelectedTransaction(null)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-                <Ionicons name="close" size={isSmallScreen ? 20 : 24} color="rgba(255,255,255,0.7)" />
-              </TouchableOpacity>
-            </View>
-
-            {/* Icon */}
-            <View style={{
-              width: isSmallScreen ? 56 : 64, 
-              height: isSmallScreen ? 56 : 64, 
-              borderRadius: isSmallScreen ? 28 : 32,
-              backgroundColor: selectedTransaction?.isIncome ? 'rgba(115, 242, 24, 0.15)' : 'rgba(239, 68, 68, 0.15)',
-              alignItems: 'center', justifyContent: 'center',
-              borderWidth: 1,
-              borderColor: selectedTransaction?.isIncome ? 'rgba(115, 242, 24, 0.3)' : 'rgba(239, 68, 68, 0.3)',
-              marginBottom: 16,
-            }}>
-              <Ionicons name={selectedTransaction?.icon} size={isSmallScreen ? 26 : 32} color={selectedTransaction?.isIncome ? '#73f218' : '#ef4444'} />
-            </View>
-
-            {/* Title & Amount */}
-            <Text style={{ color: '#fff', fontSize: isSmallScreen ? 18 : 20, fontWeight: '800', marginBottom: 4 }}>{selectedTransaction?.title}</Text>
-            <Text style={{ color: 'rgba(255,255,255,0.6)', fontSize: isSmallScreen ? 12 : 13, fontWeight: '500', marginBottom: isSmallScreen ? 16 : 20 }}>{selectedTransaction?.date}</Text>
-            
-            <Text 
-              numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.6}
-              style={{ 
-              fontSize: isSmallScreen ? 28 : 32, fontWeight: '900', 
-              color: selectedTransaction?.isIncome ? '#73f218' : '#fff',
-              marginBottom: isSmallScreen ? 20 : 24, letterSpacing: -1
-            }}>
-              {selectedTransaction?.isIncome ? '+' : '-'}{selectedTransaction?.currencySymbol && selectedTransaction?.currencySymbol !== '$' ? selectedTransaction?.currencySymbol : currency.symbol}{selectedTransaction?.amount}
-            </Text>
-
-            {/* Details Card */}
-            <View style={{
-              width: '100%',
-              backgroundColor: 'rgba(0,0,0,0.2)',
-              borderRadius: 16, 
-              padding: isSmallScreen ? 14 : 16, 
-              gap: isSmallScreen ? 10 : 12,
-            }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: isSmallScreen ? 12 : 13, fontWeight: '600' }}>Status</Text>
-                <Text style={{ color: '#73f218', fontSize: isSmallScreen ? 12 : 13, fontWeight: '700' }}>Completed</Text>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center' }}>
+              {/* Header / Close */}
+              <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 4 }}>
+                <TouchableOpacity onPress={() => setSelectedTransaction(null)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+                  <Ionicons name="close" size={isSmallScreen ? 20 : 24} color="rgba(255,255,255,0.7)" />
+                </TouchableOpacity>
               </View>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: isSmallScreen ? 12 : 13, fontWeight: '600' }}>Category</Text>
-                <Text style={{ color: '#fff', fontSize: isSmallScreen ? 12 : 13, fontWeight: '600' }}>{selectedTransaction?.isIncome ? 'Income' : 'Expense'}</Text>
-              </View>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: '600' }}>Transaction ID</Text>
-                <Text style={{ color: '#fff', fontSize: 12, fontWeight: '600' }}>#TRX-{Math.floor(Math.random() * 90000) + 10000}</Text>
-              </View>
-            </View>
 
-            {/* Share / Export Button */}
-            <TouchableOpacity
-              activeOpacity={0.85}
-              onPress={() => handleShareTransaction(selectedTransaction)}
-              style={{
-                width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                borderWidth: 1.5,
-                borderColor: 'rgba(255, 255, 255, 0.15)',
-                borderRadius: 16,
-                paddingVertical: 12,
-                marginTop: 16,
-                gap: 8,
-              }}
-            >
-              <Ionicons name="share-social-outline" size={16} color="#73f218" />
-              <Text style={{ color: '#fff', fontSize: 13, fontWeight: '800' }}>
-                Share Receipt
+              {/* Icon */}
+              <View style={{
+                width: isSmallScreen ? 52 : 60, 
+                height: isSmallScreen ? 52 : 60, 
+                borderRadius: isSmallScreen ? 26 : 30,
+                backgroundColor: selectedTransaction?.isIncome ? 'rgba(115, 242, 24, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                alignItems: 'center', justifyContent: 'center',
+                borderWidth: 1,
+                borderColor: selectedTransaction?.isIncome ? 'rgba(115, 242, 24, 0.3)' : 'rgba(239, 68, 68, 0.3)',
+                marginBottom: 12,
+              }}>
+                <Ionicons name={selectedTransaction?.icon} size={isSmallScreen ? 24 : 30} color={selectedTransaction?.isIncome ? '#73f218' : '#ef4444'} />
+              </View>
+
+              {/* Title & Amount */}
+              <Text style={{ color: '#fff', fontSize: isSmallScreen ? 18 : 20, fontWeight: '800', marginBottom: 4, textAlign: 'center' }}>{selectedTransaction?.title}</Text>
+              <Text style={{ color: 'rgba(255,255,255,0.6)', fontSize: isSmallScreen ? 12 : 13, fontWeight: '500', marginBottom: isSmallScreen ? 14 : 18, textAlign: 'center' }}>{selectedTransaction?.date}</Text>
+              
+              <Text 
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.6}
+                style={{ 
+                fontSize: isSmallScreen ? 26 : 30, fontWeight: '900', 
+                color: selectedTransaction?.isIncome ? '#73f218' : '#fff',
+                marginBottom: isSmallScreen ? 18 : 22, letterSpacing: -1
+              }}>
+                {selectedTransaction?.isIncome ? '+' : '-'}{selectedTransaction?.currencySymbol && selectedTransaction?.currencySymbol !== '$' ? selectedTransaction?.currencySymbol : currency.symbol}{selectedTransaction?.amount}
               </Text>
-            </TouchableOpacity>
+
+              {/* Details Card */}
+              <View style={{
+                width: '100%',
+                backgroundColor: 'rgba(0,0,0,0.3)',
+                borderRadius: 16, 
+                padding: isSmallScreen ? 14 : 16, 
+                gap: isSmallScreen ? 10 : 12,
+              }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: isSmallScreen ? 12 : 13, fontWeight: '600' }}>Status</Text>
+                  <Text style={{ color: '#73f218', fontSize: isSmallScreen ? 12 : 13, fontWeight: '700' }}>Completed</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: isSmallScreen ? 12 : 13, fontWeight: '600' }}>Category</Text>
+                  <Text style={{ color: '#fff', fontSize: isSmallScreen ? 12 : 13, fontWeight: '600' }}>{selectedTransaction?.isIncome ? 'Income' : 'Expense'}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: '600' }}>Transaction ID</Text>
+                  <Text style={{ color: '#fff', fontSize: 12, fontWeight: '600' }}>#TRX-{Math.floor(Math.random() * 90000) + 10000}</Text>
+                </View>
+              </View>
+
+              {/* Share / Export Button */}
+              <TouchableOpacity
+                activeOpacity={0.85}
+                onPress={() => handleShareTransaction(selectedTransaction)}
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                  borderWidth: 1.5,
+                  borderColor: 'rgba(255, 255, 255, 0.15)',
+                  borderRadius: 16,
+                  paddingVertical: 12,
+                  marginTop: 16,
+                  gap: 8,
+                }}
+              >
+                <Ionicons name="share-social-outline" size={16} color="#73f218" />
+                <Text style={{ color: '#fff', fontSize: 13, fontWeight: '800' }}>
+                  Share Receipt
+                </Text>
+              </TouchableOpacity>
+            </ScrollView>
           </Animated.View>
         </View>
       </Modal>
