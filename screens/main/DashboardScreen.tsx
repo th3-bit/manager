@@ -320,30 +320,29 @@ const AddTransactionModal = ({ visible, initialType = 'expense', onClose, onSave
   const themeColor = isIncome ? '#73f218' : '#ef4444';
 
   return (
-    <Modal transparent visible={visible} animationType="slide" onRequestClose={onClose}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
-      >
-        <View style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100%',
-          height: '100%',
-          flex: 1,
-          backgroundColor: 'rgba(15, 23, 42, 0.85)',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-          zIndex: 9999,
-        }}>
-          <TouchableOpacity
-            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-            activeOpacity={1}
-            onPress={onClose}
-          />
+    <Modal transparent visible={visible} animationType="slide" onRequestClose={onClose} statusBarTranslucent>
+      <View style={{
+        position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+        height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
+        backgroundColor: 'rgba(15, 23, 42, 0.85)',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        zIndex: 99999,
+      }}>
+        <TouchableOpacity
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          activeOpacity={1}
+          onPress={onClose}
+        />
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          style={{ width: '100%', maxWidth: 500, alignSelf: 'center' }}
+        >
           <View style={{
             width: '100%',
             maxWidth: 500,
@@ -622,18 +621,34 @@ const AddTransactionModal = ({ visible, initialType = 'expense', onClose, onSave
               </TouchableOpacity>
             </ScrollView>
           </View>
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </View>
 
       {/* ── Currency Selection Sheet ── */}
-      <Modal transparent visible={showCurrencyPicker} animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.75)', justifyContent: 'center', paddingHorizontal: 24 }}>
+      <Modal transparent visible={showCurrencyPicker} animationType="fade" onRequestClose={() => setShowCurrencyPicker(false)} statusBarTranslucent>
+        <View style={{
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          paddingHorizontal: 16,
+          zIndex: 99999,
+        }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
             activeOpacity={1}
             onPress={() => setShowCurrencyPicker(false)}
           />
           <View style={{
+            width: '100%',
+            maxWidth: 380,
+            alignSelf: 'center',
             backgroundColor: '#1e293b',
             borderRadius: 24,
             padding: 20,
@@ -2187,7 +2202,21 @@ export function DashboardScreen({ navigation }: any) {
 
       {/* ── TRANSACTION DETAIL MODAL ── */}
       <Modal transparent visible={!!selectedTransaction} animationType="fade" onRequestClose={() => setSelectedTransaction(null)} statusBarTranslucent>
-        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.85)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 20 }}>
+        <View style={{
+          position: Platform.OS === 'web' ? ('fixed' as any) : 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: Platform.OS === 'web' ? ('100vw' as any) : '100%',
+          height: Platform.OS === 'web' ? ('100vh' as any) : '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(15, 23, 42, 0.85)',
+          paddingHorizontal: 16,
+          paddingVertical: 20,
+          zIndex: 99999,
+        }}>
           <TouchableOpacity 
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} 
             activeOpacity={1} 
