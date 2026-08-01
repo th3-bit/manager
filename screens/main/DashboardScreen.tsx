@@ -325,13 +325,29 @@ const AddTransactionModal = ({ visible, initialType = 'expense', onClose, onSave
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
-        <View style={{ flex: 1, backgroundColor: 'rgba(15, 23, 42, 0.75)', justifyContent: 'flex-end' }}>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          flex: 1,
+          backgroundColor: 'rgba(15, 23, 42, 0.85)',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          zIndex: 9999,
+        }}>
           <TouchableOpacity
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
             activeOpacity={1}
             onPress={onClose}
           />
           <View style={{
+            width: '100%',
+            maxWidth: 500,
+            alignSelf: 'center',
             backgroundColor: '#0f172a',
             borderTopLeftRadius: 32,
             borderTopRightRadius: 32,

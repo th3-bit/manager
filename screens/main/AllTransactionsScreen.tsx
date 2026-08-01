@@ -239,16 +239,32 @@ export function AllTransactionsScreen({ navigation }: any) {
       </ScrollView>
 
       {/* ── Transaction Detail Modal ── */}
-      <Modal transparent visible={!!selected} animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(15,23,42,0.75)', justifyContent: 'center', paddingHorizontal: 20 }}>
+      <Modal transparent visible={!!selected} animationType="fade" onRequestClose={() => setSelected(null)} statusBarTranslucent>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          flex: 1,
+          backgroundColor: 'rgba(15,23,42,0.85)',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingHorizontal: 16,
+          paddingVertical: 20,
+          zIndex: 9999,
+        }}>
           <TouchableOpacity style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} activeOpacity={1} onPress={() => setSelected(null)} />
           <View style={{
-            backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 24,
-            padding: isSmall ? 20 : 24, borderWidth: 1.5,
+            backgroundColor: '#1e293b', borderRadius: 24,
+            width: '100%', maxWidth: 400, alignSelf: 'center',
+            padding: isSmall ? 18 : 22, borderWidth: 1.5,
             borderColor: 'rgba(255,255,255,0.2)',
-            ...({ backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' } as any),
+            maxHeight: '85%',
             shadowColor: '#000', shadowOffset: { width: 0, height: 10 },
-            shadowOpacity: 0.3, shadowRadius: 20, elevation: 10,
+            shadowOpacity: 0.4, shadowRadius: 20, elevation: 10,
             alignItems: 'center',
           }}>
             {/* Close */}

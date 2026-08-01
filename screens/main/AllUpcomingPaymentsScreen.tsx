@@ -203,14 +203,31 @@ const AddPaymentModal = ({ visible, onClose, onAdd }: any) => {
   };
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={handleClose}>
+    <Modal visible={visible} transparent animationType="slide" onRequestClose={handleClose} statusBarTranslucent>
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-        <TouchableOpacity style={{ flex: 1, backgroundColor: 'rgba(15,23,42,0.7)' }} activeOpacity={1} onPress={handleClose} />
         <View style={{
-          backgroundColor: '#0f172a', borderTopLeftRadius: 32, borderTopRightRadius: 32,
-          paddingBottom: insets.bottom + 16, maxHeight: SH * 0.92,
-          borderWidth: 1, borderColor: 'rgba(255,255,255,0.08)',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          flex: 1,
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          backgroundColor: 'rgba(15, 23, 42, 0.85)',
+          zIndex: 9999,
         }}>
+          <TouchableOpacity style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} activeOpacity={1} onPress={handleClose} />
+          <View style={{
+            width: '100%',
+            maxWidth: 500,
+            alignSelf: 'center',
+            backgroundColor: '#0f172a', borderTopLeftRadius: 32, borderTopRightRadius: 32,
+            paddingBottom: insets.bottom + 16, maxHeight: SH * 0.92,
+            borderWidth: 1, borderColor: 'rgba(255,255,255,0.08)',
+          }}>
           {/* Header */}
           <View style={{ alignItems: 'center', paddingTop: 14, paddingBottom: 6 }}>
             <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.2)' }} />
@@ -357,6 +374,7 @@ const AddPaymentModal = ({ visible, onClose, onAdd }: any) => {
               </LinearGradient>
             </TouchableOpacity>
           </ScrollView>
+        </View>
         </View>
       </KeyboardAvoidingView>
 

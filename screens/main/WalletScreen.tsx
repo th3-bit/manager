@@ -1398,16 +1398,33 @@ export function WalletScreen({ navigation }: any) {
         transparent={true}
         visible={txModalVisible}
         onRequestClose={() => setTxModalVisible(false)}
+        statusBarTranslucent
       >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(2, 6, 23, 0.82)', paddingHorizontal: 16 }}>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          paddingHorizontal: 16,
+          paddingVertical: 20,
+          zIndex: 9999,
+        }}>
           <LinearGradient
-            colors={['rgba(15, 23, 42, 0.95)', 'rgba(30, 41, 59, 0.9)']}
+            colors={['#0f172a', '#1e293b']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              width: Math.min(SCREEN_WIDTH - 32, 410),
+              width: '100%',
+              maxWidth: 410,
+              alignSelf: 'center',
               borderRadius: 28,
-              padding: 24,
+              padding: 22,
               borderWidth: 1.5,
               borderColor: 'rgba(255, 255, 255, 0.15)',
               shadowColor: '#000',
@@ -1415,6 +1432,7 @@ export function WalletScreen({ navigation }: any) {
               shadowOpacity: 0.5,
               shadowRadius: 30,
               elevation: 20,
+              maxHeight: '88%',
             }}
           >
             {/* Header Title + Close */}
@@ -1961,16 +1979,33 @@ export function WalletScreen({ navigation }: any) {
         transparent={true}
         visible={transferModalVisible}
         onRequestClose={() => setTransferModalVisible(false)}
+        statusBarTranslucent
       >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(2, 6, 23, 0.82)', paddingHorizontal: 16 }}>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          paddingHorizontal: 16,
+          paddingVertical: 20,
+          zIndex: 9999,
+        }}>
           <LinearGradient
-            colors={['rgba(15, 23, 42, 0.95)', 'rgba(30, 41, 59, 0.9)']}
+            colors={['#0f172a', '#1e293b']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              width: Math.min(SCREEN_WIDTH - 32, 410),
+              width: '100%',
+              maxWidth: 410,
+              alignSelf: 'center',
               borderRadius: 28,
-              padding: 24,
+              padding: 22,
               borderWidth: 1.5,
               borderColor: 'rgba(255, 255, 255, 0.15)',
               shadowColor: '#000',
@@ -1978,6 +2013,7 @@ export function WalletScreen({ navigation }: any) {
               shadowOpacity: 0.5,
               shadowRadius: 30,
               elevation: 20,
+              maxHeight: '88%',
             }}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
@@ -2107,16 +2143,33 @@ export function WalletScreen({ navigation }: any) {
         transparent={true}
         visible={accountModalVisible}
         onRequestClose={() => setAccountModalVisible(false)}
+        statusBarTranslucent
       >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(2, 6, 23, 0.82)', paddingHorizontal: 16 }}>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          paddingHorizontal: 16,
+          paddingVertical: 20,
+          zIndex: 9999,
+        }}>
           <LinearGradient
-            colors={['rgba(15, 23, 42, 0.95)', 'rgba(30, 41, 59, 0.9)']}
+            colors={['#0f172a', '#1e293b']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              width: Math.min(SCREEN_WIDTH - 32, 410),
+              width: '100%',
+              maxWidth: 410,
+              alignSelf: 'center',
               borderRadius: 28,
-              padding: 24,
+              padding: 22,
               borderWidth: 1.5,
               borderColor: 'rgba(255, 255, 255, 0.15)',
               shadowColor: '#000',
@@ -2124,6 +2177,7 @@ export function WalletScreen({ navigation }: any) {
               shadowOpacity: 0.5,
               shadowRadius: 30,
               elevation: 20,
+              maxHeight: '88%',
             }}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
